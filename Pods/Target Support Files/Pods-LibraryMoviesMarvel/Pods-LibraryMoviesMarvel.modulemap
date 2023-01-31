@@ -1,0 +1,6 @@
+framework module Pods_LibraryMoviesMarvel {
+  umbrella header "Pods-LibraryMoviesMarvel-umbrella.h"
+
+  export *
+  module * { export * }
+}
