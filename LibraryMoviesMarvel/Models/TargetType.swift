@@ -9,7 +9,7 @@ import Moya
 
 extension MoviesTarget: TargetType {
     var baseURL: URL {
-        guard let url = URL(string: "http://img.omdbapi.com/? apikey=[yourkey]&") else {
+        guard let url = URL(string: "http://www.omdbapi.com/?apikey=[yourkey]&") else {
             fatalError("Error to convert string url to URL")
         }
         return url
