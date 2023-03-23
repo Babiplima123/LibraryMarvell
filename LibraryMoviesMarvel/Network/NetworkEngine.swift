@@ -24,20 +24,26 @@ class NetworkEngine<Target: TargetType> {
                     } catch {
                         return completion(Result.failure(MovieError.invalidJSON))
                     }
-            case .failure(let error):
-                return completion(Result.failure(MovieError.taskError(error: error)))
+           
+                // TODO: TRATAR O ERRO
+
+            case .failure(_):
+                return completion(Result.failure(MovieError.unknown))
             }
         }
     }
-    //5
+    
     func requestVoid(target: Target,
                      completion: @escaping(Result<Void, MovieError>) -> Void) {
         provider.request(target) { result in
             switch result {
             case .success:
                 return completion(Result.success(()))
-            case .failure(let error):
-                return completion(Result.failure(MovieError.taskError(error: error)))
+            case .failure(_):
+             
+                // TODO: TRATAR O ERRO
+                
+                return completion(Result.failure(MovieError.unknown))
             }
         }
     }

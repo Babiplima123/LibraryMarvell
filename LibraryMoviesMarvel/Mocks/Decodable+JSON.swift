@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 extension Decodable {
     static func fromJSON<T: Decodable>(_ fileName: String, fileExtension: String = "json") -> T? {
         guard let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {

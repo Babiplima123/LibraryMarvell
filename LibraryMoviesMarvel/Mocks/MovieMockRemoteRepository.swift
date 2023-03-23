@@ -9,7 +9,8 @@ import Moya
 
 struct MovieMockRemoteRepository: MovieRepository {
     private var engine: NetworkEngine<MovieService> {
-        return NetworkEngine<MovieService>(provider: MoyaProvider<MovieService>(stubClosure: MoyaProvider.immediatelyStub, plugins: []))
+        let provider = MoyaProvider<MovieService>()
+        return NetworkEngine<MovieService>(provider: provider)
     }
     
     func save(movie: Movie, completion: @escaping (Result<Void, MovieError>) -> Void) {
@@ -27,3 +28,4 @@ struct MovieMockRemoteRepository: MovieRepository {
     func loadMovies(completion: @escaping (Result<[Movie], MovieError>) -> Void) {
         engine.request(target: .loadMovies, completion: completion)
     }
+}

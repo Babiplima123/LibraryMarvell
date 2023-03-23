@@ -5,13 +5,10 @@
 //
 
 struct Movie: Codable {
-    var title: String
-    var year: String
-    var month: String
-    var id: Int
-    
+    var name: String?
+    var description: String?
+    var id: Int?
     //imagem do filme ?
-    
 }
 
 
