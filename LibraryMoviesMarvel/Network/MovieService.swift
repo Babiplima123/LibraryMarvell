@@ -17,7 +17,7 @@ enum MovieService {
 
 extension MovieService: TargetType {
     var baseURL: URL {
-        guard let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=4935358cf32745dc8d68b9e079f89978&language=en-US&page=1") else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming") else {
             fatalError("Error to convert string url to URL")
         }
         return url
@@ -60,23 +60,23 @@ extension MovieService: TargetType {
     }
     
     var task: Task {
-        switch self {
-        case .delete(let movie),
-             .update(let movie),
-             .save(let movie ):
-            return .requestJSONEncodable(movie)
-        case .loadNameMovies,
-                .loadMovies:
-            return .requestPlain
+        return .requestParameters(parameters: parameters ?? [:], encoding: parameterEncoding)
+    }
+    
+    var parameters: [String : Any]? {
+            return [
+                "api_key": "4935358cf32745dc8d68b9e079f89978",
+                "page": 1,
+                "language": "en-US"
+            ]
         }
+        
+    var parameterEncoding: ParameterEncoding {
+            return URLEncoding.queryString
     }
     
     var headers: [String : String]? {
-        return NetworkConstants.Headers.contentTypeApplicationJSON
-    }
-    
-    var validationType: ValidationType {
-        return ValidationType.successCodes
+        return nil
     }
 
 }
